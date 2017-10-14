@@ -302,7 +302,7 @@ HOSTVARS_PIC := $(HOSTTOOLS) \
 	CPPFLAGS="$(CPPFLAGS) $(PIC)" \
 	CFLAGS="$(CFLAGS) $(PIC)" \
 	CXXFLAGS="$(CXXFLAGS) $(PIC)" \
-	LDFLAGS="$(LDFLAGS)"
+	LDFLAGS="$(LDFLAGS) -fPIE -pie"
 
 download_git = \
 	rm -Rf $(@:.tar.xz=) && \
