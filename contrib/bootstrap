@@ -404,6 +404,9 @@ case "${OS}" in
 	*linux*)
 		add_make_enabled "HAVE_LINUX"
 		;;
+	*msys*)
+		add_make_enabled "HAVE_MSYS"
+		;;
 	*mingw*)
 		add_make_enabled "HAVE_WIN32"
 		;;
