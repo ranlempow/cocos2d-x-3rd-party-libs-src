@@ -85,6 +85,18 @@ while [ "$1" != "" ]; do
     shift
 done
 
+case "$OSTYPE" in
+    linux*)
+        android_toolchain_platform=linux-x86_64
+        ;;
+    darwin*)
+        android_toolchain_platform=darwin-x86_64
+        ;;
+    win*|cygwin*|mingw*|msys*)
+        android_toolchain_platform=windows-x86_64
+        ;;
+esac
+
 #check invalid platform
 function check_invalid_platform()
 {
