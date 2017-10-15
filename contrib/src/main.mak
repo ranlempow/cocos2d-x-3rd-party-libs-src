@@ -339,8 +339,17 @@ UPDATE_AUTOCONFIG = for dir in $(AUTOMAKE_DATA_DIRS); do \
 
 RECONF = mkdir -p -- $(PREFIX)/share/aclocal && \
 	cd $< && autoreconf -fiv $(ACLOCAL_AMFLAGS)
-CMAKE = cmake . -DCMAKE_TOOLCHAIN_FILE=$(abspath toolchain.cmake) \
-		-DCMAKE_INSTALL_PREFIX=$(PREFIX)
+
+ifdef HAVE_WIN32
+CMAKE_EXEC = $(CMAKE_EXEC_WIN) -G "MSYS Makefiles"
+else
+CMAKE_EXEC = $(CMAKE_EXEC_MSYS)
+endif
+CMAKE = $(CMAKE_EXEC) . -DCMAKE_INSTALL_PREFIX=$(PREFIX)
+ifdef HAVE_CROSS_COMPILE
+CMAKE := $(CMAKE) -DCMAKE_TOOLCHAIN_FILE=$(abspath toolchain.cmake)
+endif
+
 
 #
 # Per-package build rules
