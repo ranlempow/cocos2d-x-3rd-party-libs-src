@@ -350,6 +350,9 @@ ifdef HAVE_CROSS_COMPILE
 CMAKE := $(CMAKE) -DCMAKE_TOOLCHAIN_FILE=$(abspath toolchain.cmake)
 endif
 
+PROMPT_USER = sh -c 'read -p "Continue [y/n]?" -n 1 -r; [[ $$REPLY =~ ^[Yy]$$ ]]'
+ADD_SHA512 = $(PROMPT_USER) && cd $(TARBALLS) && shasum -t -a 512 $(notdir $<) > $@
+WARNING_SHA512 = @echo "WARNING: $@ not exist. $< maybe not a trustable source."
 
 #
 # Per-package build rules
