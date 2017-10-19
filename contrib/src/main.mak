@@ -298,11 +298,15 @@ HOSTVARS := $(HOSTTOOLS) \
 	CFLAGS="$(CFLAGS)" \
 	CXXFLAGS="$(CXXFLAGS)" \
 	LDFLAGS="$(LDFLAGS)"
+ifdef HAVE_WIN32
+HOSTVARS_PIC := $(HOSTVARS)
+else
 HOSTVARS_PIC := $(HOSTTOOLS) \
 	CPPFLAGS="$(CPPFLAGS) $(PIC)" \
 	CFLAGS="$(CFLAGS) $(PIC)" \
 	CXXFLAGS="$(CXXFLAGS) $(PIC)" \
 	LDFLAGS="$(LDFLAGS) -fPIE -pie"
+endif
 
 download_git = \
 	rm -Rf $(@:.tar.xz=) && \
