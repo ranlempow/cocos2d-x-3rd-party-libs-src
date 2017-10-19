@@ -130,6 +130,17 @@ export CROSS_SDK=AppleTV${TVOS_PLATFORM}.sdk
 
 endif
 
+ifdef HAVE_WIN32
+OPENSSL_EXTRA_CONFIG_2=no-idea no-mdc2 no-rc5
+
+ifeq ($(MY_TARGET_ARCH),x86_64)
+OPENSSL_CONFIG_VARS=mingw64
+else
+OPENSSL_CONFIG_VARS=mingw
+endif
+
+endif
+
 $(TARBALLS)/openssl-$(OPENSSL_VERSION).tar.gz:
 	$(call download,$(OPENSSL_URL))
 
@@ -162,5 +173,5 @@ ifdef HAVE_MACOSX
 	cd $< && perl -i -pe "s|^CFLAGS=(.*) -DNDEBUG (.*)-O3|CFLAGS=\\1 \\2 ${OPTIM}|g" Makefile
 	cd $< && perl -i -pe "s|^CFLAGS_Q=(.*) -DNDEBUG (.*)|CFLAGS_Q=\\1 \\2 ${OPTIM}|g" Makefile
 endif
-	cd $< && $(MAKE) install_sw
+	cd $< && $(MAKE) depend && $(MAKE) && $(MAKE) install_sw
 	touch $@
