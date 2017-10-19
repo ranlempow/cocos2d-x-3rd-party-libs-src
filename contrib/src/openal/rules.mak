@@ -13,6 +13,6 @@ openal: openal-soft-$(OPENAL_VERSION).tar.bz2 .sum-openal
 	$(MOVE)
 
 .openal: openal toolchain.cmake
-	cd $< && $(HOSTVARS) $(CMAKE) -DLIBTYPE=STATIC
+	cd $< && $(HOSTVARS) $(CMAKE)
 	cd $< && $(MAKE) VERBOSE=1 install
 	touch $@
