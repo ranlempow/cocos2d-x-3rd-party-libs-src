@@ -1,6 +1,6 @@
 # libiconv
-LIBICONV_VERSION=1.14
-LIBICONV_URL=$(GNU)/libiconv/libiconv-$(LIBICONV_VERSION).tar.gz
+LIBICONV_VERSION := 1.14
+LIBICONV_URL := $(GNU)/libiconv/libiconv-$(LIBICONV_VERSION).tar.gz
 
 
 $(TARBALLS)/libiconv-$(LIBICONV_VERSION).tar.gz:
