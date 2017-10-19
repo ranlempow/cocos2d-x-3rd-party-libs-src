@@ -1,0 +1,14 @@
+diff -Eaur a/src/Makefile b/src/Makefile
+--- a/src/Makefile	2016-03-03 19:40:00.000000000 +0800
++++ b/src/Makefile	2017-10-15 03:47:43.535723700 +0800
+@@ -158,6 +158,10 @@
+   HOST_RM= del
+ else
+   HOST_SYS:= $(shell uname -s)
++  ifneq (,$(findstring MSYS,$(HOST_SYS)))
++    HOST_SYS= Windows
++    HOST_MSYS= mingw
++  endif
+   ifneq (,$(findstring MINGW,$(HOST_SYS)))
+     HOST_SYS= Windows
+     HOST_MSYS= mingw

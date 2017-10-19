@@ -10,6 +10,7 @@ $(TARBALLS)/LuaJIT-$(LUAJIT_VERSION).tar.gz:
 
 luajit: LuaJIT-$(LUAJIT_VERSION).tar.gz .sum-luajit
 	$(UNPACK)
+	$(APPLY) $(SRC)/luajit/mingw.patch
 ifeq ($(LUAJIT_VERSION),2.0.1)
 	$(APPLY) $(SRC)/luajit/v2.0.1_hotfix1.patch
 endif
@@ -99,5 +100,9 @@ else
 endif
 
 endif
+ifdef HAVE_WIN32
+	cd $< && $(HOSTVARS) mingw32-make install PREFIX=$(PREFIX) BUILDMODE=static
+else
 	cd $< && $(MAKE) install PREFIX=$(PREFIX)
+endif
 	touch $@
