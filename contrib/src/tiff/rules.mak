@@ -1,7 +1,8 @@
 # tiff
 
-TIFF_VERSION := 4.0.3
-TIFF_URL := http://download.osgeo.org/libtiff/tiff-$(TIFF_VERSION).tar.gz
+TIFF_VERSION ?= 4.0.3
+TIFF_URL ?= http://download.osgeo.org/libtiff/tiff-$(TIFF_VERSION).tar.gz
+$(eval TIFF_URL := $(TIFF_URL))
 
 $(TARBALLS)/tiff-$(TIFF_VERSION).tar.gz:
 	$(call download,$(TIFF_URL))

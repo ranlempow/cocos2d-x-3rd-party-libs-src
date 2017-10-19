@@ -1,6 +1,7 @@
 # PNG
-PNG_VERSION := 1.6.16
-PNG_URL := $(SF)/libpng/libpng16/older-releases/$(PNG_VERSION)/libpng-$(PNG_VERSION).tar.xz
+PNG_VERSION ?= 1.6.16
+PNG_URL ?= $(SF)/libpng/libpng16/older-releases/$(PNG_VERSION)/libpng-$(PNG_VERSION).tar.xz
+$(eval PNG_URL := $(PNG_URL))
 
 
 $(TARBALLS)/libpng-$(PNG_VERSION).tar.xz:

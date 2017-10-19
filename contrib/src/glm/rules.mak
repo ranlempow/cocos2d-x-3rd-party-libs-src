@@ -1,6 +1,7 @@
 # GLM
-GLM_VERSION := 0.9.8.5
-GLM_URL := $(GITHUB)/g-truc/glm/releases/download/$(GLM_VERSION)/glm-$(GLM_VERSION).zip
+GLM_VERSION ?= 0.9.8.5
+GLM_URL ?= $(GITHUB)/g-truc/glm/releases/download/$(GLM_VERSION)/glm-$(GLM_VERSION).zip
+$(eval GLM_URL := $(GLM_URL))
 
 $(TARBALLS)/glm-$(GLM_VERSION).zip:
 	$(call download,$(GLM_URL))

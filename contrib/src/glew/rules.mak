@@ -1,6 +1,7 @@
 # GLEW
-GLEW_VERSION := 1.7.0
-GLEW_URL := $(SF)/glew/glew/$(GLEW_VERSION)/glew-$(GLEW_VERSION).tgz
+GLEW_VERSION ?= 1.7.0
+GLEW_URL ?= $(SF)/glew/glew/$(GLEW_VERSION)/glew-$(GLEW_VERSION).tgz
+$(eval GLEW_URL := $(GLEW_URL))
 
 $(TARBALLS)/glew-$(GLEW_VERSION).tar.gz:
 	$(call download,$(GLEW_URL))

@@ -1,6 +1,7 @@
 # GLFW
-GLFW_VERSION := 3.2
-GLFW_URL := $(GITHUB)/glfw/glfw/releases/download/$(GLFW_VERSION)/glfw-$(GLFW_VERSION).zip
+GLFW_VERSION ?= 3.2
+GLFW_URL ?= $(GITHUB)/glfw/glfw/releases/download/$(GLFW_VERSION)/glfw-$(GLFW_VERSION).zip
+$(eval GLFW_URL := $(GLFW_URL))
 
 
 $(TARBALLS)/glfw-$(GLFW_VERSION).zip:

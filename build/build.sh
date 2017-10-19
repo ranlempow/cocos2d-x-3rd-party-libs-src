@@ -257,6 +257,21 @@ else
     export NO_STRICT_HASH_CHECK=
 fi
 
+for lib in "${all_libraries[@]}"
+do
+    parse_lib_version=cfg_${lib}_version
+    parse_lib_url=cfg_${lib}_url
+    if [ -n "${!parse_lib_version}" ]; then
+        echo ${lib^^}_VERSION=${!parse_lib_version}
+        export ${lib^^}_VERSION=${!parse_lib_version}
+    fi
+    if [ -n "${!parse_lib_url}" ]; then
+        echo ${lib^^}_URL=${!parse_lib_url}
+        export ${lib^^}_URL=${!parse_lib_url}
+    fi
+done
+
+
 function create_fat_library()
 {
     library_name=$1

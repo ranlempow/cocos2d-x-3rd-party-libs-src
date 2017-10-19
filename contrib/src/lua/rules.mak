@@ -1,7 +1,8 @@
 # Lua 5.1
 
-LUA_VERSION := 5.1.4
-LUA_URL := http://www.lua.org/ftp/lua-$(LUA_VERSION).tar.gz
+LUA_VERSION ?= 5.1.4
+LUA_URL ?= http://www.lua.org/ftp/lua-$(LUA_VERSION).tar.gz
+$(eval LUA_URL := $(LUA_URL))
 
 # Reverse priority order
 LUA_TARGET := generic

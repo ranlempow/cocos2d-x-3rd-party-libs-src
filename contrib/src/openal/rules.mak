@@ -1,6 +1,7 @@
 # OPENAL
-OPENAL_VERSION := 1.17.2
-OPENAL_URL := http://kcat.strangesoft.net/openal-releases/openal-soft-$(OPENAL_VERSION).tar.bz2
+OPENAL_VERSION ?= 1.17.2
+OPENAL_URL ?= http://kcat.strangesoft.net/openal-releases/openal-soft-$(OPENAL_VERSION).tar.bz2
+$(eval OPENAL_URL := $(OPENAL_URL))
 
 
 $(TARBALLS)/openal-soft-$(OPENAL_VERSION).tar.bz2:

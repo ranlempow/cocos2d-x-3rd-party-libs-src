@@ -1,7 +1,8 @@
 # webp
 
-WEBP_VERSION := 0.5.0
-WEBP_URL := http://downloads.webmproject.org/releases/webp/libwebp-$(WEBP_VERSION).tar.gz
+WEBP_VERSION ?= 0.5.0
+WEBP_URL ?= http://downloads.webmproject.org/releases/webp/libwebp-$(WEBP_VERSION).tar.gz
+$(eval WEBP_URL := $(WEBP_URL))
 
 $(TARBALLS)/libwebp-$(WEBP_VERSION).tar.gz:
 	$(call download,$(WEBP_URL))

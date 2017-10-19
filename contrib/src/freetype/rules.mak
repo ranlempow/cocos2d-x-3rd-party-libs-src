@@ -1,7 +1,8 @@
 # freetype
 
-FREETYPE2_VERSION := 2.5.5
-FREETYPE2_URL := $(SF)/freetype/freetype2/$(FREETYPE2_VERSION)/freetype-$(FREETYPE2_VERSION).tar.gz
+FREETYPE2_VERSION ?= 2.5.5
+FREETYPE2_URL ?= $(SF)/freetype/freetype2/$(FREETYPE2_VERSION)/freetype-$(FREETYPE2_VERSION).tar.gz
+$(eval FREETYPE2_URL := $(FREETYPE2_URL))
 
 $(TARBALLS)/freetype-$(FREETYPE2_VERSION).tar.gz:
 	$(call download,$(FREETYPE2_URL))

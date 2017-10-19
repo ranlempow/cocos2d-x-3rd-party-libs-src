@@ -1,7 +1,8 @@
 # sqlite
 
-SQLITE_VERSION := 3.6.20
-SQLITE_URL := http://www.sqlite.org/sqlite-amalgamation-$(SQLITE_VERSION).tar.gz
+SQLITE_VERSION ?= 3.6.20
+SQLITE_URL ?= http://www.sqlite.org/sqlite-amalgamation-$(SQLITE_VERSION).tar.gz
+$(eval SQLITE_URL := $(SQLITE_URL))
 
 
 $(TARBALLS)/sqlite-$(SQLITE_VERSION).tar.gz:
