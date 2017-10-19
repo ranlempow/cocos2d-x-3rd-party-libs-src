@@ -28,6 +28,9 @@ $(TARBALLS)/zlib-$(ZLIB_VERSION).tar.gz:
 
 zlib: zlib-$(ZLIB_VERSION).tar.gz .sum-zlib
 	$(UNPACK)
+ifdef HAVE_ANDORID
+	$(APPLY) $(SRC)/zlib/mingw.patch
+endif
 	$(MOVE)
 
 .zlib: zlib

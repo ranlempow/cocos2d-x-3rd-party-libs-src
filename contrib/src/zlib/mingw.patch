@@ -1,0 +1,14 @@
+diff -Naur a/configure b/configure
+--- a/configure	2013-03-24 13:30:09.000000000 +0800
++++ b/configure	2017-10-12 15:46:07.419794100 +0800
+@@ -193,8 +193,8 @@
+   MINGW* | mingw*)
+ # temporary bypass
+         rm -f $test.[co] $test $test$shared_ext
+-        echo "Please use win32/Makefile.gcc instead." | tee -a configure.log
+-        leave 1
++        #echo "Please use win32/Makefile.gcc instead." | tee -a configure.log
++        #leave 1
+         LDSHARED=${LDSHARED-"$cc -shared"}
+         LDSHAREDLIBC=""
+         EXE='.exe' ;;
