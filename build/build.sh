@@ -251,6 +251,11 @@ function check_invalid_build_mode() {
 
 check_invalid_build_mode $build_mode
 
+if [ "$cfg_no_strict_hash_check" = "yes" ]; then
+    export NO_STRICT_HASH_CHECK=1
+else
+    export NO_STRICT_HASH_CHECK=
+fi
 
 function create_fat_library()
 {

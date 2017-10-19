@@ -355,8 +355,18 @@ CMAKE := $(CMAKE) -DCMAKE_TOOLCHAIN_FILE=$(abspath toolchain.cmake)
 endif
 
 PROMPT_USER = sh -c 'read -p "Continue [y/n]?" -n 1 -r; [[ $$REPLY =~ ^[Yy]$$ ]]'
-ADD_SHA512 = $(PROMPT_USER) && cd $(TARBALLS) && shasum -t -a 512 $(notdir $<) > $@
-WARNING_SHA512 = @echo "WARNING: $@ not exist. $< maybe not a trustable source."
+ADD_SHA512 = \
+    $(PROMPT_USER) && \
+    (cd $(TARBALLS) && shasum -t -a 512 $(notdir $(1))) \
+        > $(SRC)/$(patsubst .sum-%,%,$@)/$(notdir $(1)).SHA512SUMS
+WARNING_SHA512 = echo "WARNING: $(notdir $(1)).SHA512SUMS not exist. $(1) maybe not a trustable source."
+CHECK_SHA512_OR_ADD = \
+    $(call checksum,$(SHA512SUM),SHA512) || \
+    $(call checksum,$(SHA512SUM),$(notdir $(1)).SHA512) || \
+    ($(call WARNING_SHA512,$(1)) && $(call ADD_SHA512,$(1)))
+ifdef NO_STRICT_HASH_CHECK
+CHECK_SHA512 = $(call CHECK_SHA512_OR_ADD,$(filter $(TARBALLS)/%,$^))
+endif
 
 #
 # Per-package build rules
