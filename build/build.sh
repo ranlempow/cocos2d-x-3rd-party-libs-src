@@ -125,6 +125,7 @@ do
 done
 
 
+source `pwd`/config.ini
 
 function list_all_supported_libraries()
 {
@@ -234,7 +235,9 @@ function check_invalid_library_name()
     done
 }
 
-check_invalid_library_name
+if [ -z $cfg_no_check_library ]; then
+    check_invalid_library_name
+fi
 
 
 #check invalid build mode, only debug and release is acceptable
