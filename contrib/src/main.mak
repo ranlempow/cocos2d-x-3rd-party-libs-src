@@ -362,8 +362,9 @@ ADD_SHA512 = \
 WARNING_SHA512 = echo "WARNING: $(notdir $(1)).SHA512SUMS not exist. $(1) maybe not a trustable source."
 CHECK_SHA512_OR_ADD = \
     $(call checksum,$(SHA512SUM),SHA512) || \
-    $(call checksum,$(SHA512SUM),$(notdir $(1)).SHA512) || \
-    ($(call WARNING_SHA512,$(1)) && $(call ADD_SHA512,$(1)))
+    ($(call checksum,$(SHA512SUM),$(notdir $(1)).SHA512) || \
+        ($(call WARNING_SHA512,$(1)) && $(call ADD_SHA512,$(1))) \
+    )
 ifdef NO_STRICT_HASH_CHECK
 CHECK_SHA512 = $(call CHECK_SHA512_OR_ADD,$(filter $(TARBALLS)/%,$^))
 endif

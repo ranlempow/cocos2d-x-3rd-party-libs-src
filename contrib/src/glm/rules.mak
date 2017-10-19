@@ -10,6 +10,7 @@ $(TARBALLS)/glm-$(GLM_VERSION).zip:
 
 glm: glm-$(GLM_VERSION).zip .sum-glm
 	$(UNPACK)
+	touch glm
 
 .glm: glm toolchain.cmake
 	cd $< && $(HOSTVARS) $(CMAKE)
