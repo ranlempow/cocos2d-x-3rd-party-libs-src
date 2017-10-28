@@ -36,7 +36,10 @@
 /contrib/android-arm/
 /contrib/android-armv7/
 /contrib/android-x86/
+/contrib/android-x86_64/
 /contrib/android-arm64/
+/contrib/android-mips/
+/contrib/android-mips64/
 /contrib/install-msys/
 /contrib/msys-x86_64/
 /contrib/include/

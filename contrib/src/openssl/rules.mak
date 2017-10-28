@@ -1,4 +1,5 @@
 # OPENSSL
+# not the newest version, becouse perl<6 in msys
 OPENSSL_VERSION ?= 1.1.0c
 OPENSSL_URL ?= https://www.openssl.org/source/openssl-$(OPENSSL_VERSION).tar.gz
 $(eval OPENSSL_URL := $(OPENSSL_URL))
@@ -63,6 +64,21 @@ endif
 ifeq ($(MY_TARGET_ARCH),x86)
 OPENSSL_CONFIG_VARS=android-x86
 endif
+
+ifeq ($(MY_TARGET_ARCH),x86_64)
+OPENSSL_CONFIG_VARS=linux-generic64
+# https://groups.google.com/forum/#!topic/mailing.openssl.dev/wjZsEgvlcO8
+OPENSSL_EXTRA_CONFIG_2=no-asm
+endif
+
+ifeq ($(MY_TARGET_ARCH),mips)
+OPENSSL_CONFIG_VARS=linux-mips32
+endif
+
+ifeq ($(MY_TARGET_ARCH),mips64)
+OPENSSL_CONFIG_VARS=linux-generic64
+endif
+
 endif
 
 ifdef HAVE_IOS
