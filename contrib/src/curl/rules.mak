@@ -14,12 +14,25 @@ curl: curl-$(CURL_VERSION).tar.gz .sum-curl
 	$(UPDATE_AUTOCONFIG)
 	$(MOVE)
 
-DEPS_curl = zlib $(DEPS_zlib)
+DEPS_curl += zlib $(DEPS_zlib)
+DEPS_curl += openssl $(DEPS_openssl)
 
-DEPS_curl = openssl $(DEPS_openssl)
+configure_option+= \
+--disable-ntlm-wb \
+--disable-ftp \
+--enable-ldap \
+--disable-ldaps \
+--disable-dict \
+--disable-telnet \
+--disable-tftp \
+--disable-pop3 \
+--disable-imap \
+--disable-smb \
+--disable-smtp \
+--disable-gopher \
 
 ifdef HAVE_LINUX
-configure_option=--without-libidn --without-librtmp
+configure_option+=--without-libidn --without-librtmp
 endif
 
 ifdef HAVE_TVOS
