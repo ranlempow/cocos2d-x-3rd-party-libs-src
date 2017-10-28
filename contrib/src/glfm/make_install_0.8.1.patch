@@ -1,0 +1,14 @@
+diff -Eaur b/CMakeLists.txt c/CMakeLists.txt
+--- b/CMakeLists.txt	2017-10-15 12:44:06.655205300 +0800
++++ c/CMakeLists.txt	2017-10-15 13:01:08.957207200 +0800
+@@ -59,3 +59,10 @@
+ if (GLFM_BUILD_EXAMPLE)
+     add_subdirectory(example)
+ endif()
++
++install(FILES include/glfm.h DESTINATION include)
++install(TARGETS glfm
++    LIBRARY DESTINATION lib
++    ARCHIVE DESTINATION lib
++    PUBLIC_HEADER DESTINATION include
++)
