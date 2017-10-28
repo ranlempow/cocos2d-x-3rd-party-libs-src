@@ -352,6 +352,12 @@ check_android_sdk()
 
         if [ ${ANDROID_STL_VERSION} = "gnu" ];then
             add_make_enabled "HAVE_STL_GUN"
+            add_make "EXTRA_CFLAGS += -I${ANDROID_NDK}/sources/cxx-stl/gnu-libstdc++/4.9/include"
+            add_make "EXTRA_CFLAGS += -I${ANDROID_NDK}/sources/cxx-stl/gnu-libstdc++/4.9/libs/${MY_TARGET_ARCH}/include"
+            add_make "EXTRA_CFLAGS += -I${ANDROID_NDK}/sources/cxx-stl/gnu-libstdc++/4.9/include/backward"
+
+            add_make "EXTRA_LDADD += ${ANDROID_NDK}/sources/cxx-stl/gnu-libstdc++/4.9/libs/${MY_TARGET_ARCH}/libgnustl_static.a"
+            add_make "EXTRA_LDADD += ${ANDROID_NDK}/sources/cxx-stl/gnu-libstdc++/4.9/libs/${MY_TARGET_ARCH}/libsupc++.a"
         else
             add_make_enabled "HAVE_STL_CLANG"
         fi

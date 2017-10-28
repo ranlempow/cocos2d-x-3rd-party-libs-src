@@ -186,6 +186,7 @@ CPPFLAGS := $(CPPFLAGS) $(EXTRA_CFLAGS) $(OPTIM)
 CXXFLAGS := $(CXXFLAGS) $(EXTRA_CFLAGS) $(OPTIM)
 EXTRA_LDFLAGS += -L$(PREFIX)/lib
 LDFLAGS := $(LDFLAGS) $(EXTRA_LDFLAGS)
+LDADD := $(LDADD) $(EXTRA_LDADD)
 # Do not export those! Use HOSTVARS.
 
 # Do the FPU detection, after we have figured out our compilers and flags.
@@ -297,7 +298,9 @@ HOSTVARS := $(HOSTTOOLS) \
 	CPPFLAGS="$(CPPFLAGS)" \
 	CFLAGS="$(CFLAGS)" \
 	CXXFLAGS="$(CXXFLAGS)" \
-	LDFLAGS="$(LDFLAGS)"
+	LDFLAGS="$(LDFLAGS)" \
+	LDADD="$(LDADD)"
+
 ifdef HAVE_WIN32
 HOSTVARS_PIC := $(HOSTVARS)
 else
@@ -305,7 +308,8 @@ HOSTVARS_PIC := $(HOSTTOOLS) \
 	CPPFLAGS="$(CPPFLAGS) $(PIC)" \
 	CFLAGS="$(CFLAGS) $(PIC)" \
 	CXXFLAGS="$(CXXFLAGS) $(PIC)" \
-	LDFLAGS="$(LDFLAGS) -fPIE -pie"
+	LDFLAGS="$(LDFLAGS) -fPIE -pie" \
+	LDADD="$(LDADD)"
 endif
 
 download_git = \
