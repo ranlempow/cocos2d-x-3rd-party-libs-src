@@ -72,9 +72,10 @@ ifdef HAVE_WIN32
 	cd $< && $(RANLIB) "$(PREFIX)/lib/liblua.a"
 	mkdir -p -- "$(PREFIX)/lib/pkgconfig"
 	cp $</etc/lua.pc "$(PREFIX)/lib/pkgconfig/"
+	cp $</src/lua51.dll $(PREFIX)/bin
 endif
 ifdef HAVE_CROSS_COMPILE
-	cd $</src && $(MAKE) clean && $(MAKE) liblua.a && ranlib liblua.a && $(MAKE) luac
+	cd $</src && $(MAKE) clean && $(HOSTVARS_PIC) $(MAKE) liblua.a && ranlib liblua.a && $(HOSTVARS_PIC) $(MAKE) luac
 	cp $</src/luac $(PREFIX)/bin
 endif
 	touch $@
