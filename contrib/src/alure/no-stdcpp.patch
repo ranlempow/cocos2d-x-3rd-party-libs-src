@@ -1,0 +1,29 @@
+diff -Eaur a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt	2011-07-29 16:37:48.000000000 +0800
++++ b/CMakeLists.txt	2017-10-20 03:55:35.259001100 +0800
+@@ -53,10 +53,10 @@
+ ENDIF(NOT DEFINED CMAKE_DEBUG_POSTFIX)
+ 
+ 
+-CHECK_LIBRARY_EXISTS(stdc++ memset "" HAS_STDCXX)
+-IF(HAS_STDCXX)
+-    SET(EXTRA_LIBS stdc++ ${EXTRA_LIBS})
+-ENDIF(HAS_STDCXX)
++# CHECK_LIBRARY_EXISTS(stdc++ memset "" HAS_STDCXX)
++# IF(HAS_STDCXX)
++    # SET(EXTRA_LIBS stdc++ ${EXTRA_LIBS})
++# ENDIF(HAS_STDCXX)
+ 
+ CHECK_LIBRARY_EXISTS(m pow "" HAS_LIBM)
+ IF(HAS_LIBM)
+@@ -514,8 +514,8 @@
+     )
+ ENDIF(BUILD_STATIC)
+ IF(BUILD_EXAMPLES AND INSTALL_EXAMPLES)
+-    INSTALL(TARGETS alureplay alurestream alurecdplay
+-            RUNTIME DESTINATION bin)
++    INSTALL(FILES alureplay alurestream alurecdplay
++            DESTINATION bin)
+ ENDIF(BUILD_EXAMPLES AND INSTALL_EXAMPLES)
+ 
+ 

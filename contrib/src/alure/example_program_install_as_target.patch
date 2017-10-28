@@ -1,0 +1,12 @@
+diff -Eaur a2/CMakeLists.txt b2/CMakeLists.txt
+--- a2/CMakeLists.txt	2017-10-27 18:44:28.665741500 +0800
++++ b2/CMakeLists.txt	2017-10-27 18:43:31.336640600 +0800
+@@ -521,7 +521,7 @@
+     )
+ ENDIF(BUILD_STATIC)
+ IF(BUILD_EXAMPLES AND INSTALL_EXAMPLES)
+-    INSTALL(FILES alureplay alurestream alurecdplay
++    INSTALL(TARGETS alureplay alurestream alurecdplay
+             DESTINATION bin)
+ ENDIF(BUILD_EXAMPLES AND INSTALL_EXAMPLES)
+ 
