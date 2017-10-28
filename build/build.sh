@@ -322,10 +322,29 @@ if [ $cfg_platform_name = "mac" ];then
     export MIN_MACOSX_TARGET=$cfg_min_macosx_deoply_tartget
 fi
 
+# change title in msys
+if [ "${OSTYPE}" = "msys" ]; then
+    origin_PS1="${PS1}"
+    function settitle() {
+          export PS1="\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n$ "
+          echo -ne "\e]0;$1\a"
+    }
+    function settitlepath() {
+          export PS1="${origin_PS1}"
+    }
+    trap 'settitlepath' ERR
+    trap 'settitlepath' 2
+else
+    function settitle() { return; }
+    function settitlepath() { return; }
+fi
 
 # build all the libraries for different arches
+libs_finish_count=-1
+libs_length=${#build_library[@]}
 for lib in "${build_library[@]}"
 do
+    libs_finish_count=$((${libs_finish_count} + 1))
     library_name=$lib
 
     parser_lib_archive_alias=${lib}_archive_alias
@@ -339,6 +358,7 @@ do
 
     for arch in "${build_arches[@]}"
     do
+        settitle "${lib}.${arch}[${libs_finish_count}/${libs_length}]"
         #skip build libraries with certain arch
         ignore_arch_library=${lib}_ignore_arch_list
         ignore_arch_list=(${!ignore_arch_library})
@@ -530,3 +550,5 @@ do
     fi
 
 done
+
+settitlepath
