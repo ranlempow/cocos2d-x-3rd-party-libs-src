@@ -1,0 +1,46 @@
+diff -Eaur a/configure.ac b/configure.ac
+--- a/configure.ac	2017-01-01 09:46:35.224989000 +0800
++++ b/configure.ac	2017-10-27 05:41:26.077301400 +0800
+@@ -271,6 +271,9 @@
+ fi
+ AC_SUBST(FLAC__TEST_LEVEL)
+ 
++AC_ARG_VAR(FLAC_LDADD)
++AC_SUBST(FLAC_LDADD)
++
+ AC_ARG_ENABLE(werror,
+ 	AC_HELP_STRING([--enable-werror], [Enable -Werror in all Makefiles]))
+ 
+diff -Eaur a/examples/cpp/decode/file/Makefile.am b/examples/cpp/decode/file/Makefile.am
+--- a/examples/cpp/decode/file/Makefile.am	2016-12-08 04:10:26.214454000 +0800
++++ b/examples/cpp/decode/file/Makefile.am	2017-10-27 05:47:51.287840700 +0800
+@@ -28,6 +28,7 @@
+ 	$(top_builddir)/src/libFLAC++/libFLAC++.la \
+ 	$(top_builddir)/src/libFLAC/libFLAC.la \
+ 	@OGG_LIBS@ \
++	@FLAC_LDADD@ \
+ 	-lm
+ 
+ example_cpp_decode_file_SOURCES = main.cpp
+diff -Eaur a/examples/cpp/encode/file/Makefile.am b/examples/cpp/encode/file/Makefile.am
+--- a/examples/cpp/encode/file/Makefile.am	2016-12-08 04:10:26.214454000 +0800
++++ b/examples/cpp/encode/file/Makefile.am	2017-10-27 05:48:35.377902500 +0800
+@@ -28,6 +28,7 @@
+ 	$(top_builddir)/src/libFLAC++/libFLAC++.la \
+ 	$(top_builddir)/src/libFLAC/libFLAC.la \
+ 	@OGG_LIBS@ \
++	@FLAC_LDADD@ \
+ 	-lm
+ 
+ example_cpp_encode_file_SOURCES = main.cpp
+diff -Eaur a/src/test_libFLAC++/Makefile.am b/src/test_libFLAC++/Makefile.am
+--- a/src/test_libFLAC++/Makefile.am	2016-12-08 04:10:26.234454600 +0800
++++ b/src/test_libFLAC++/Makefile.am	2017-10-27 05:41:39.417320100 +0800
+@@ -31,6 +31,7 @@
+ 	$(top_builddir)/src/libFLAC++/libFLAC++.la \
+ 	$(top_builddir)/src/libFLAC/libFLAC.la \
+ 	@OGG_LIBS@ \
++	@FLAC_LDADD@ \
+ 	-lm
+ 
+ test_libFLAC___SOURCES = \
