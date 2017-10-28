@@ -19,11 +19,16 @@ EX_ECFLAGS = -fPIC
 endif
 
 
-DEPS_websockets = zlib $(DEPS_zlib)
-DEPS_websockets = openssl $(DEPS_openssl)
+DEPS_websockets += zlib $(DEPS_zlib)
+DEPS_websockets += openssl $(DEPS_openssl)
 
 ifdef HAVE_TVOS
 	make_option=-DLWS_WITHOUT_DAEMONIZE=1
+endif
+
+ifdef HAVE_WIN32
+	make_option +=-DLWS_OPENSSL_LIBRARIES=$(PREFIX)/lib/libopenssl.a
+	make_option +=-DLWS_OPENSSL_INCLUDE_DIRS=$(PREFIX)/include
 endif
 
 .websockets: websockets .zlib .openssl toolchain.cmake
