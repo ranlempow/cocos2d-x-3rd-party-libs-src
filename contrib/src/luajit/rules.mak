@@ -1,6 +1,6 @@
 # luajit
 
-LUAJIT_VERSION ?= 2.1.0-beta2
+LUAJIT_VERSION ?= 2.1.0-beta3
 LUAJIT_URL ?= http://luajit.org/download/LuaJIT-$(LUAJIT_VERSION).tar.gz
 $(eval LUAJIT_URL := $(LUAJIT_URL))
 
