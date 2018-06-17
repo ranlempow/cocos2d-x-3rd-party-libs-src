@@ -30,20 +30,28 @@ configure_option+= \
 --disable-smb \
 --disable-smtp \
 --disable-gopher \
+--without-libssh2 \
+--without-libidn \
+--without-nghttp2
 
 ifdef HAVE_LINUX
-configure_option+=--without-libidn --without-librtmp
+configure_option+=--without-librtmp
 endif
 
 ifdef HAVE_TVOS
 configure_option+=--disable-ntlm-wb
 endif
 
+EXTRA_CURL_LIBS=
+ifdef HAVE_WIN32
+EXTRA_CURL_LIBS=LIBS=-lcrypt32
+endif
+
 .curl: curl .zlib .openssl
 	$(RECONF)
-	cd $< && $(HOSTVARS_PIC) ./configure $(HOSTCONF) \
+	cd $< && $(HOSTVARS_PIC) $(EXTRA_CURL_LIBS) ./configure $(HOSTCONF) \
 		--with-ssl=$(PREFIX) \
-		--with-zlib \
+		--with-zlib=$(PREFIX)/lib \
 		--enable-ipv6 \
 		--disable-ldap \
 		$(configure_option)
