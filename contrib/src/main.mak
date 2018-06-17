@@ -470,7 +470,10 @@ ifdef HAVE_STL_CLANG
 	echo "include_directories($(ANDROID_NDK)/sources/android/support/include \
 	 	$(ANDROID_NDK)/sources/cxx-stl/llvm-libc++/libcxx/include)"  >> $@
 endif
-
+ifdef HAVE_MSYS
+	echo "set(CMAKE_HOST_SYSTEM_NAME Windows)"  >> $@
+	echo "set(CMAKE_HOST_SYSTEM_PROCESSOR AMD64)"  >> $@
+endif
 endif  #end of HAVE_ANDROID
 
 ifdef HAVE_TIZEN
