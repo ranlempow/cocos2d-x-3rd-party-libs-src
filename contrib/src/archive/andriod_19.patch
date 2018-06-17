@@ -1,0 +1,19 @@
+diff -Naur a/libarchive/android_lf.h b/libarchive/android_lf.h
+--- a/libarchive/android_lf.h	2016-03-20 02:16:07.000000000 +0800
++++ b/libarchive/android_lf.h	2017-10-13 16:53:02.879693600 +0800
+@@ -42,6 +42,15 @@
+ //sys/vfs.h
+ #define fstatfs fstatfs64
+ #define statfs statfs64
++
++#else
++
++#ifdef __ANDROID__
++#include <sys/vfs.h>
++#define statvfs statfs
++#define fstatvfs fstatfs
++#endif
++
+ #endif
+ 
+ #endif /* ARCHIVE_ANDROID_LF_H_INCLUDED */
